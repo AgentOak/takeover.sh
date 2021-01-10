@@ -14,7 +14,7 @@ fi
 
 ./busybox echo "Please set a root password for sshd"
 
-./busybox chroot . /bin/passwd
+./busybox chroot . /usr/bin/passwd
 
 ./busybox echo "Setting up target filesystem..."
 ./busybox rm -f etc/mtab
@@ -65,7 +65,7 @@ EOF
 ./busybox echo "Starting secondary sshd"
 
 ./busybox chroot . /usr/bin/ssh-keygen -A
-./busybox chroot . /usr/sbin/sshd -p $PORT
+./busybox chroot . /usr/sbin/sshd -p $PORT -o PermitRootLogin=yes
 
 ./busybox echo "You should SSH into the secondary sshd now."
 ./busybox echo "Type OK to continue"
